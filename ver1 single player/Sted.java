@@ -19,9 +19,7 @@ class Sted {
         return beskrivelse;
     }
 
-    public Sted hentUtgang() {
+    public Sted nesteSted() {
         return utgang;
     }
-
 }
-

@@ -1,4 +1,3 @@
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -25,11 +24,11 @@ class Terreng {
         start = new Sted(scanner.nextLine());
         teller = 2;
         start.utgang = new Sted(scanner.nextLine());
-        Sted neste = start.hentUtgang();
+        Sted neste = start.utgang;
 
         while(scanner.hasNextLine()) {
             neste.utgang = new Sted(scanner.nextLine());
-            neste = neste.hentUtgang();
+            neste = neste.utgang;
             teller++;
         }
         scanner.close();
@@ -79,19 +78,17 @@ class Terreng {
         teller = 0;
         Sted sted = start;
 
-        while(sted.hentUtgang() != null) {
+        while(sted.utgang != null) {
             sted.plasserSkattkiste(kister[teller]);
-            sted = sted.hentUtgang();
+            sted = sted.nesteSted();
             teller++;
         }
     }
     
     
+
     public Sted hentStart() {
         return start;
     }
     
 }
-
-
-

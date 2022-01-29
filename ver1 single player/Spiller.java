@@ -33,17 +33,7 @@ class Spiller {
         bg.giStatus(erI.hentBeskrivelse() + "Skattkisten inneholder: \n" + erI.skattkiste);
 
         if(erI.skattkiste.harPlass() && ! ryggsekk.erTom()){
-            selgGjenstand();
-        }
-        if(ryggsekk.harPlass()) {
-            plukkOppGjenstand();
-        }
-        erI = erI.utgang;
-        trekk++;
-    }
-
-    public void selgGjenstand(){
-        int leggNed = bg.beOmKommando("Vil du selge en gjenstand?", new String[] {"0: Nei", "1: Ja"});
+            int leggNed = bg.beOmKommando("Vil du selge en gjenstand?", new String[] {"0: Nei", "1: Ja"});
             
             if(leggNed == 1) {
                 String[] alt = new String[ryggsekk.antallGjenstander()];
@@ -55,18 +45,19 @@ class Spiller {
                     }
                 }
 
-                int indeks = bg.beOmKommando("\nHva vil du selge?", alt);   
+                int indeks = bg.beOmKommando("\nHva vil du selge?", alt);
+                
                 formue += erI.hentSkattkiste().leggNed(ryggsekk.innhold[indeks]);
+
                 ryggsekk.taUt(indeks);
             }
-    }
-
-    public void plukkOppGjenstand() {
-        int plukkOpp = bg.beOmKommando("Vil du plukke opp en tilfeldig gjenstand?", new String[] {"0: Nei", "1: Ja"});
+        }
+        
+        if(ryggsekk.harPlass()) {
+            int plukkOpp = bg.beOmKommando("Vil du plukke opp en tilfeldig gjenstand?", new String[] {"0: Nei", "1: Ja"});
 
             if(plukkOpp == 1) {
                 Random rand = new Random();
-                
                 int indeks = rand.nextInt(erI.hentSkattkiste().hentInnhold().length);
 
                 while (erI.hentSkattkiste().hentInnhold()[indeks] == null) {
@@ -79,8 +70,10 @@ class Spiller {
                 erI.hentSkattkiste().taUt(indeks);
                 
             }
+        }
         
-        
+        erI = erI.utgang;
+        trekk++;
     }
 
     public void skrivUtResultat() {
@@ -89,4 +82,3 @@ class Spiller {
 
 
 }
-
