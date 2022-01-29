@@ -25,7 +25,5 @@ class Terminal implements Brukergrensesnitt{
         
         return svar;
     }
-
-    
 }
 
